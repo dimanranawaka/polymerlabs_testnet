@@ -1,0 +1,210 @@
+echo "Running the full E2E flow..."
+Running the full E2E flow...
+just set-contracts optimism XCounter false && just set-contracts base XCounter false
+echo "Updating config.json with contract type..."
+Updating config.json with contract type...
+node scripts/private/_set-contracts-config.js optimism XCounter false
+🆗 Updated config with XCounter for optimism. Set isUniversal to false.
+echo "Updating config.json with contract type..."
+Updating config.json with contract type...
+node scripts/private/_set-contracts-config.js base XCounter false
+🆗 Updated config with XCounter for base. Set isUniversal to false.
+just deploy optimism base
+echo "Deploying contracts with Hardhat..."
+Deploying contracts with Hardhat...
+node scripts/private/_deploy-config.js optimism base
+Contract XCounter deployed to 0x750DEdb8295bCE454De935781DB607657c226313 on network base
+
+
+          ✅   Deployment Successful   ✅
+          -------------------------------
+          📄 Contract Type: XCounter
+          📍 Address: 0x750DEdb8295bCE454De935781DB607657c226313
+          🌍 Network: base
+          -------------------------------
+
+      
+🆗 Updated config.json with address 0x750DEdb8295bCE454De935781DB607657c226313 on network base
+Contract XCounter deployed to 0xbbBC08F573176eFE0094dC4d00D0aaa2910a2C97 on network optimism
+
+
+          ✅   Deployment Successful   ✅
+          -------------------------------
+          📄 Contract Type: XCounter
+          📍 Address: 0xbbBC08F573176eFE0094dC4d00D0aaa2910a2C97
+          🌍 Network: optimism
+          -------------------------------
+
+      
+🆗 Updated config.json with address 0xbbBC08F573176eFE0094dC4d00D0aaa2910a2C97 on network optimism
+just sanity-check
+echo "Running sanity check..."
+Running sanity check...
+node scripts/private/_sanity-check.js
+🗄️  Fetching IBC app on base at address: 0x750DEdb8295bCE454De935781DB607657c226313
+✅ Sanity check passed for network base
+
+🗄️  Fetching IBC app on optimism at address: 0xbbBC08F573176eFE0094dC4d00D0aaa2910a2C97
+✅ Sanity check passed for network optimism
+
+just create-channel
+echo "Attempting to create a channel with the values from the config..."
+Attempting to create a channel with the values from the config...
+node scripts/private/_create-channel-config.js
+🔊 Setting up IBC channel event listener...
+👂 Listening for IBC channel events on optimism...
+👂 Listening for IBC channel events on base...
+
+          -------------------------------------------
+
+          🙋‍♀️   CHANNEL OPEN INIT !!!   🙋‍♀️
+
+          -------------------------------------------
+          🔔 Event name: OpenIbcChannel
+          ⛓️  Network: optimism
+          🔗 Port Address: 0xbbBC08F573176eFE0094dC4d00D0aaa2910a2C97
+          🔗 Counterparty Port ID: polyibc.base-sim.750DEdb8295bCE454De935781DB607657c226313
+          🛣️  Counterparty Channel ID: 
+          🦘 Connection Hops: connection-0,connection-5
+          🔀 Ordering: 0
+          💰 Fee Enabled: false
+          #️⃣  Version: 1.0
+          -------------------------------------------
+          🧾 TxHash: 0x4e4a435e5bf752aeaa319982dbe2f5de7bb2d6318b1d496089905bae5d2fa92d
+          🔍 Explorer URL: https://optimism-sepolia.blockscout.com/tx/0x4e4a435e5bf752aeaa319982dbe2f5de7bb2d6318b1d496089905bae5d2fa92d
+          -------------------------------------------
+
+ ⏱️  Waiting for channel open try...
+
+          -------------------------------------------
+
+          🙋‍♂️   CHANNEL OPEN TRY !!!   🙋‍♂️
+
+          -------------------------------------------
+          🔔 Event name: OpenIbcChannel
+          ⛓️  Network: base
+          🔗 Port Address: 0x750DEdb8295bCE454De935781DB607657c226313
+          🔗 Counterparty Port ID: polyibc.optimism-sim.bbBC08F573176eFE0094dC4d00D0aaa2910a2C97
+          🛣️  Counterparty Channel ID: channel-37854
+          🦘 Connection Hops: connection-4,connection-1
+          🔀 Ordering: 0
+          💰 Fee Enabled: false
+          #️⃣  Version: 1.0
+          -------------------------------------------
+          🧾 TxHash: 0x938b21cabfa375ced5dbae53f59ac105fa95d178216c73d303fddc81e20aed1d
+          🔍 Explorer URL: https://base-sepolia.blockscout.com/tx/0x938b21cabfa375ced5dbae53f59ac105fa95d178216c73d303fddc81e20aed1d
+          -------------------------------------------
+
+ ⏱️  Waiting for channel open ack...
+
+          -------------------------------------------
+
+          👩‍❤️‍💋‍👨   CHANNEL OPEN ACK !!!   👩‍❤️‍💋‍👨
+
+          -------------------------------------------
+          🔔 Event name: ConnectIbcChannel
+          ⛓️  Network: optimism
+          🔗 Port Address: 0xbbBC08F573176eFE0094dC4d00D0aaa2910a2C97
+          🛣️  Channel ID: channel-37854
+          -------------------------------------------
+          🧾 TxHash: 0xc005a9696ce7a5bdbc006a31261c30288c5729d8cfff9e6b06b8a4654bc34568
+          🔍 Explorer URL: https://optimism-sepolia.blockscout.com/tx/0xc005a9696ce7a5bdbc006a31261c30288c5729d8cfff9e6b06b8a4654bc34568
+          -------------------------------------------
+
+ ⏱️  Waiting for channel open confirm...
+
+          -------------------------------------------
+
+          🤵‍♂️💍👰‍♀️   CHANNEL OPEN CONFIRM !!!   👰‍♀️💍🤵‍♂️
+
+          -------------------------------------------
+          🔔 Event name: ConnectIbcChannel
+          ⛓️  Network: base
+          🔗 Port Address: 0x750DEdb8295bCE454De935781DB607657c226313
+          🛣️  Channel ID: channel-37855
+          -------------------------------------------
+          🧾 TxHash: 0x87b54935d25c2e87deed8c7ee80e502a66a608507b6d683e868857bf7e013c6d
+          🔍 Explorer URL: https://base-sepolia.blockscout.com/tx/0x87b54935d25c2e87deed8c7ee80e502a66a608507b6d683e868857bf7e013c6d
+          -------------------------------------------
+
+ ⏱️  Waiting for channel creation overview...
+
+          🎊   Created Channel   🎊
+          -----------------------------------------
+          🛣️  Channel ID: channel-37854
+          🔗 Port ID: polyibc.optimism-sim.bbBC08F573176eFE0094dC4d00D0aaa2910a2C97
+          🌍 Network: optimism
+          -----------------------------------------
+          🛣️  Counterparty Channel ID: channel-37855
+          🪐 Counterparty Network: base
+          -----------------------------------------
+
+🆗 Updated config.json with channel-37854 on network optimism and channel-37855 on network base
+just send-packet optimism
+echo "Sending a packet with the values from the config..."
+Sending a packet with the values from the config...
+node scripts/private/_send-packet-config.js optimism
+🔊 Setting up IBC packet event listener...
+👂 Listening for IBC packet events on optimism...
+👂 Listening for IBC packet events on base...
+ 
+          -------------------------------------------
+          📦 📮   PACKET HAS BEEN SENT !!!   📦 📮
+          -------------------------------------------
+          🔔 Event name: SendPacket
+          ⛓️  Network: optimism
+          🔗 Source Port Address: 0xbbBC08F573176eFE0094dC4d00D0aaa2910a2C97
+          🛣️  Source Channel ID: channel-37854
+          📈 Sequence: 1
+          ⏳ Timeout Timestamp: 1710844354000000000
+          -------------------------------------------
+          🧾 TxHash: 0xb1cab44bb47803cf53768cb26483a8317f45e543f6f5d9f92445c1ab315d05ab
+          🔍 Explorer URL: https://optimism-sepolia.blockscout.com/tx/0xb1cab44bb47803cf53768cb26483a8317f45e543f6f5d9f92445c1ab315d05ab
+          -------------------------------------------
+
+ ⏱️  Waiting for packet receipt...
+🗄️  Fetching IBC app on optimism at address: 0xbbBC08F573176eFE0094dC4d00D0aaa2910a2C97
+
+
+          -------------------------------------------
+          📦 📬   PACKET IS RECEIVED !!!   📦 📬
+          -------------------------------------------
+          🔔 Event name: RecvPacket
+          ⛓️  Network: base
+          🔗 Destination Port Address: 0x750DEdb8295bCE454De935781DB607657c226313
+          🛣️  Destination Channel ID: channel-37855
+          📈 Sequence: 1
+          -------------------------------------------
+          🧾 TxHash: 0xe5621e18fec3fef5f161b379608743e3cc375ff4eb56bdfc0198c2f471ffd12d
+          🔍 Explorer URL: https://base-sepolia.blockscout.com/tx/0xe5621e18fec3fef5f161b379608743e3cc375ff4eb56bdfc0198c2f471ffd12d
+          -------------------------------------------
+
+ ⏱️  Waiting for write acknowledgement...
+ 
+          -------------------------------------------
+          📦 📝   ACKNOWLEDGEMENT WRITTEN !!!   📦 📝
+          -------------------------------------------
+          🔔 Event name: WriteAckPacket
+          ⛓️  Network: base
+          🔗 Destination Port Address: 0x750DEdb8295bCE454De935781DB607657c226313
+          🛣️  Channel ID: channel-37855
+          📈 Sequence: 1
+          -------------------------------------------
+          🧾 TxHash: 0xe5621e18fec3fef5f161b379608743e3cc375ff4eb56bdfc0198c2f471ffd12d
+          🔍 Explorer URL: https://base-sepolia.blockscout.com/tx/0xe5621e18fec3fef5f161b379608743e3cc375ff4eb56bdfc0198c2f471ffd12d
+          -------------------------------------------
+
+ ⏱️  Waiting for acknowledgement...
+   
+          -------------------------------------------
+          📦 🏁   PACKET IS ACKNOWLEDGED !!!   📦 🏁
+          -------------------------------------------
+          🔔 Event name: Acknowledgement
+          ⛓️  Network: optimism
+          🔗 Source Port Address: 0xbbBC08F573176eFE0094dC4d00D0aaa2910a2C97
+          🛣️  Source Channel ID: channel-37854
+          📈 Sequence: 1
+          -------------------------------------------
+          🧾 TxHash: 0x2e998b546111bf762b60be101d8b7ded8903aed1bbe6792148cb65ae1e71d3ca
+          🔍 Explorer URL: https://optimism-sepolia.blockscout.com/tx/0x2e998b546111bf762b60be101d8b7ded8903aed1bbe6792148cb65ae1e71d3ca
+          -------------------------------------------
